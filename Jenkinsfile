@@ -13,7 +13,9 @@ node {
         sh """
         docker rmi $(docker images -a)
         docker build -t poc2 .
-        docker-compose up -d
         """
+    }
+    stage("docker compose"){
+        sh "docker-compose up -d"
     }
 }
