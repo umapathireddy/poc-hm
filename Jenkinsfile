@@ -11,7 +11,7 @@ node {
     }
     stage('docker build'){
         sh '''
-        docker rmi $(docker images -a)
+        docker rmi $(docker images)
         docker build -t poc2 .
         '''
     }
