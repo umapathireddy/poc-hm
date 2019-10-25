@@ -11,6 +11,6 @@ node {
     }
     stage('docker build'){
         sh "docker build -t poc2 ."
-        sh "docker-compose up"
+        sh "docker-compose up -d"
     }
 }
