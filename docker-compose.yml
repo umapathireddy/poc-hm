@@ -2,3 +2,5 @@ version: "3.7"
 services:
   webapp:
     image: poc2
+    ports:
+     - "8001:80"
