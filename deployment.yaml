@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: poc2:latest-deployment
+  labels:
+    app: poc2:latest
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: poc2:latest
+  template:
+    metadata:
+      labels:
+        app: poc2:latest
+    spec:
+      containers:
+      - name: nginx
+        image: poc2:latest
+        ports:
+        - containerPort: 80
