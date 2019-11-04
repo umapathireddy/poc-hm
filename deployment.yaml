@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: poc3latest-deployment
+  name: poc3latest-Deployment
   labels:
-    app: poc2:latest
+    app: poc3latest
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: poc2:latest
+      app: poc3latest
   template:
     metadata:
       labels:
-        app: poc2:latest
+        app: poc3latest
     spec:
       containers:
-      - name: nginx
+      - name: poc
         image: poc2:latest
         ports:
         - containerPort: 80
