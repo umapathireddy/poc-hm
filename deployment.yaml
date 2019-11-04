@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: poc2:latest-deployment
+  name: poc3latest-deployment
   labels:
     app: poc2:latest
 spec:
