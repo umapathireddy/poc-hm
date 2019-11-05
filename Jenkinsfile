@@ -19,7 +19,6 @@ node {
     stage("k8s"){
         sh """
         kubectl create -f deployment.yaml
-        kubectl get Deployment
         """
     }
 }
