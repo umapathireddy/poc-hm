@@ -16,9 +16,14 @@ node {
     stage("docker compose"){
         sh "docker-compose up -d"
     }
-    stage("k8s"){
+    stage("k8s deployment"){
         sh """
         kubectl create -f deployment.yaml
+        """
+    }
+    stage("k8s services"){
+        sh """
+        kubectl create -f service.yaml
         """
     }
 }
