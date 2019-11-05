@@ -1,16 +1,16 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: poc3
+  name: poc4
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: poc3
+        app: poc4
     spec:
       containers:
-      - name: poc3
-        image: poc2:latest
+      - name: poc4
+        image: poc4:latest
         ports:
         - containerPort: 80
