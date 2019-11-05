@@ -1,21 +1,16 @@
-apiVersion: apps/v1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: poc3latest-Deployment
-  labels:
-    app: poc3latest
+  name: poc3
 spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: poc3latest
+  replicas: 1
   template:
     metadata:
       labels:
-        app: poc3latest
+        app: poc3
     spec:
       containers:
-      - name: poc
+      - name: poc3
         image: poc2:latest
         ports:
         - containerPort: 80
