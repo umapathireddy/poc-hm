@@ -16,4 +16,10 @@ node {
     stage("docker compose"){
         sh "docker-compose up -d"
     }
+    stage("clone"){
+        sh """
+        kubectl create -f deployment.yaml
+        kubectl get Deployment
+        """
+    }
 }
