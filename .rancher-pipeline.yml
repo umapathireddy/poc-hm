@@ -1,0 +1,11 @@
+stages:
+- name: test
+  steps:
+  - publishImageConfig:
+      dockerfilePath: ./Dockerfile
+      buildContext: .
+      tag: test
+      pushRemote: true
+      registry: index.docker.io
+timeout: 60
+notification: {}
