@@ -7,23 +7,23 @@ node {
         sh "mvn clean package"
     }
     stage("tomcat deployment"){
-        sh 'cp /var/lib/jenkins/workspace/poc/target/hello-1.0.war /home/uma_willpower/apache-tomcat-8.5.47/webapps'
+       // sh 'cp /var/lib/jenkins/workspace/poc/target/hello-1.0.war /home/uma_willpower/apache-tomcat-8.5.47/webapps'
     }
     stage('docker build'){
-        sh 'docker build -t poc5 .'
+        //sh 'docker build -t poc5 .'
      
     }
     stage("docker compose"){
-        sh "docker-compose up -d"
+       // sh "docker-compose up -d"
     }
     stage("k8s deployment"){
-        sh """
-        kubectl create -f deployment.yaml
-        """
+       // sh """
+        //kubectl create -f deployment.yaml
+       // """
     }
     stage("k8s services"){
-        sh """
-        kubectl create -f service.yaml
-        """
+       // sh """
+        //kubectl create -f service.yaml
+        //"""
     }
 }
