@@ -25,5 +25,7 @@ node {
     stage ("codecovarage"){
         jacoco buildOverBuild: true, changeBuildStatus: true, maximumBranchCoverage: '2', maximumComplexityCoverage: '3', maximumInstructionCoverage: '20', maximumLineCoverage: '4', skipCopyOfSrcFiles: true
     }
+    
+}
       
     
