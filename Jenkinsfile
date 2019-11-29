@@ -26,8 +26,7 @@ node {
         //jacoco buildOverBuild: true, changeBuildStatus: true, deltaBranchCoverage: '3', deltaClassCoverage: '6', deltaComplexityCoverage: '4', deltaInstructionCoverage: '2', deltaLineCoverage: '3', deltaMethodCoverage: '4', exclusionPattern: '**/*Test*.class', inclusionPattern: '**/*.class', maximumBranchCoverage: '1', maximumClassCoverage: '9', maximumComplexityCoverage: '2', maximumInstructionCoverage: '2', maximumLineCoverage: '5', maximumMethodCoverage: '7', minimumBranchCoverage: '7', minimumComplexityCoverage: '8', minimumInstructionCoverage: '6', minimumLineCoverage: '7', minimumMethodCoverage: '7', skipCopyOfSrcFiles: true, sourceExclusionPattern: 'generated/**/*.java'
     }
 stage("nexus"){
-    nexusPublisher nexusInstanceId: 'Nexus', nexusRepositoryId: 'mavan-digital-sky', packages: [[$class: 'MavenPackage', mavenAssetList: [], mavenCoordinate: [artifactId: 'hello', groupId: 'com.boxfuse.samples', packaging: 'war', version: '1.0']]], tagName: 'latest'
- }
+nexusPublisher nexusInstanceId: 'Nexus', nexusRepositoryId: 'mavan-digital-sky', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: '**/*.war']], mavenCoordinate: [artifactId: 'hello', groupId: 'com.boxfuse.samples', packaging: 'war', version: '1.0']]], tagName: 'latest' }
 }
       
     
