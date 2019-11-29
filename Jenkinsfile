@@ -28,4 +28,5 @@ node {
 stage("nexus"){
 nexusArtifactUploader credentialsId: 'nexus', groupId: 'com.boxfuse.samples', nexusUrl: 'http://192.168.0.235:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'mavan-digital-sky', version: '1.0'}
       
-    
+      }
+}
