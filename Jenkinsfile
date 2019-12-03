@@ -19,7 +19,7 @@ node {
               }
           }
       } */       
-     stage("maven build") {
+     stage("maven build & deploy to nexus") {
        sh "mvn clean deploy"
     }
    /*stage("nexus"){
