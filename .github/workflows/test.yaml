@@ -18,7 +18,7 @@ jobs:
     - name: Nexus Repo Publish
       uses: sonatype-nexus-community/nexus-repo-github-action@master
       with:
-        serverUrl: http://192.168.0.235:8081/repository/digisky-releases/
+        serverUrl: http://192.168.0.235:8081/repository/maven-central/
         username: admin
         password: ${{ secrets.password }}
         format: maven2
