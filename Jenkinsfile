@@ -1,7 +1,8 @@
+properties([pipelineTriggers([pollSCM('* * * * *')])])
 node {
     cleanWs()
     stage("repository clone") {
-        checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
+     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
     }
      /*stage("SonarQube analysis") {
           node {
@@ -20,7 +21,7 @@ node {
           }
       } */       
      stage("maven build & deploy to nexus") {
-       sh "mvn clean deploy"
+      // sh "mvn clean deploy"
     }
    /*stage("nexus"){
 nexusPublisher nexusInstanceId: 'Nexus', nexusRepositoryId: 'digisky', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/hello-1.0.war']], mavenCoordinate: [artifactId: 'hello', groupId: 'com.boxfuse.samples', packaging: 'war', version: '1.0']]]      
