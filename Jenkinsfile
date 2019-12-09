@@ -2,7 +2,7 @@ properties([pipelineTriggers([pollSCM('*/2 * * * *')])])
 node {
     cleanWs()
     stage("repository clone") {
-     checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
+        checkout([$class: 'GitSCM', branches: [[name: '${Branch}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
     }
      /*stage("SonarQube analysis") {
           node {
