@@ -1,4 +1,4 @@
-properties([pipelineTriggers([pollSCM('* * * * *')])])
+properties([pipelineTriggers([pollSCM('*/2 * * * *')])])
 node {
     cleanWs()
     stage("repository clone") {
