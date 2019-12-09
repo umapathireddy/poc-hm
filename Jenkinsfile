@@ -1,8 +1,9 @@
-properties([pipelineTriggers([pollSCM('*/2 * * * *')])])
+properties([ parameters([choice(choices: ['master', 'develop', 'test'], description: 'select barch', name: 'branch')]), pipelineTriggers([pollSCM('*/2 * * * *')])])
 node {
     cleanWs()
     stage("repository clone") {
-        checkout([$class: 'GitSCM', branches: [[name: '${Branch}']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
+        echo: "pulling the branch $("params.branch)
+        checkout([$class: 'GitSCM', branches: [[name: $("params.branch)']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
     }
      /*stage("SonarQube analysis") {
           node {
