@@ -2,9 +2,9 @@ properties([ parameters([choice(choices: ['master\ndevelop\ntest'], description:
 node {
     cleanWs()
     stage("repository clone") {
-        echo: "pulling the branch $("params.branch)
+        echo: "pulling the branch ${"params.branch}
         //checkout([$class: 'GitSCM', branches: [[name: "$(params.branch)"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
-    git 'https://github.com/umapathireddy/poc-hm.git', branch: "$(params.branch)"
+        git url: 'https://github.com/umapathireddy/poc-hm.git', branch: "${params.branch}"
     }
      /*stage("SonarQube analysis") {
           node {
