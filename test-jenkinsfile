@@ -5,9 +5,10 @@ node {
     }
     stage("sonar qube"){
     proprites{
-    property "soanr.projectName", "test"
+    property "soanr.projectName", "test"     ###
     property "soanr.projetKey", "jacococ"
     property "sonar.coverage.jacoco.xmlReportPaths", "**.*jacoco.exec"
     }
+    
   }
 }
