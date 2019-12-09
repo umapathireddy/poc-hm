@@ -1,4 +1,4 @@
-properties([ parameters([choice(choices: ['master\ndevelop\ntest'], description: 'select barch', name: 'branch')]), pipelineTriggers([pollSCM('*/2 * * * *')])])
+properties([ parameters([choice(choices: 'master\ndevelop\ntest', description: 'select barch', name: 'branch')]), pipelineTriggers([pollSCM('*/2 * * * *')])])
 node {
     cleanWs()
     stage("repository clone") {
