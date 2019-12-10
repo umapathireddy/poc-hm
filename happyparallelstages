@@ -17,7 +17,7 @@ node {
             }
         }
     }
-    stage("Mavan build , unit test and deploy in to nexus"){
+    stage("Mavan build  unit test and deploy in to nexus"){
         parallel 'maven build' : {
             stage("maven build"){
                 sh "mvn clean"
