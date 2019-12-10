@@ -7,17 +7,17 @@ node {
         //git url: 'https://github.com/umapathireddy/poc-hm.git', branch: "${params.branch}"
     }
     stage("Quality scan"){
-        parallel 'Unit test' : {
+        parallel 'sonar test' : {
             stage("sonar test"){
-                sh "mvn validate"
+                sh "mvn clean"
             }
         }, 'Other test': {
              stage("other test"){
-                sh "mvn compile"
+                sh "mvn clean"
             }
         }
     }
-    stage("Mavan build  unit test and deploy in to nexus"){
+    stage("Mavan build and unit test and deploy in to nexus"){
         parallel 'maven build' : {
             stage("maven build"){
                 sh "mvn clean"
@@ -26,7 +26,7 @@ node {
              stage("unit test"){
                 sh "mvn clean"
             }
-        }, 'deploy in to nexus'{
+        }, 'deploy nexus': {
             stage ('deploy into nexus') {
                 sh "mvn clean"
             }
@@ -49,13 +49,13 @@ node {
             stage("deploy in dev"){
                 sh " mvn clean"
             }
-        }, "integration test" {
+        }, "integration test" : {
             stage ("integration test"){
                 sh "mvn clean"
             }
         }
     }
-    stage("proceed to Promote?"){
+    stage("proceed to QA server?"){
         timeout(activity: true, time: 11) {
         input 'proceed to Promote?'
         }
