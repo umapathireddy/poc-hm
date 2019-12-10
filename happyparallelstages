@@ -1,0 +1,66 @@
+properties([ parameters([choice(choices: 'master\ndevelop\ntest', description: 'select barch', name: 'branch')]), pipelineTriggers([pollSCM('*/2 * * * *')])])
+node {
+    cleanWs()
+    stage("repository clone") {
+        echo: "pulling the branch ${params.branch}"
+        checkout([$class: 'GitSCM', branches: [[name: "${params.branch}"]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/umapathireddy/poc-hm.git']]])
+        //git url: 'https://github.com/umapathireddy/poc-hm.git', branch: "${params.branch}"
+    }
+    stage("Quality scan"){
+        parallel 'Unit test' : {
+            stage("sonar test"){
+                sh "mvn validate"
+            }
+        }, 'Other test': {
+             stage("other test"){
+                sh "mvn compile"
+            }
+        }
+    }
+    stage("Mavan build , unit test and deploy in to nexus"){
+        parallel 'maven build' : {
+            stage("maven build"){
+                sh "mvn clean"
+            }
+        }, 'unit test': {
+             stage("unit test"){
+                sh "mvn clean"
+            }
+        }, 'deploy in to nexus'{
+            stage ('deploy into nexus') {
+                sh "mvn clean"
+            }
+        }
+    }
+    
+    stage("docker image build and deploy docker hub"){
+        parallel 'docker image' : {
+            stage("Build docker image"){
+                sh "mvn clean"
+            }
+        }, 'deploy docker hub': {
+             stage("Deploy to docker hub"){
+                sh "mvn clean"
+            }
+        }
+    }
+    stage("deploy in dev server"){
+        parallel 'dev' : {
+            stage("deploy in dev"){
+                sh " mvn clean"
+            }
+        }, "integration test" {
+            stage ("integration test"){
+                sh "mvn clean"
+            }
+        }
+    }
+    stage("proceed to Promote?"){
+        timeout(activity: true, time: 11) {
+        input 'proceed to Promote?'
+        }
+    }
+    stage("deployed to QA server"){
+        sh "mvn clean"
+    }
+}
