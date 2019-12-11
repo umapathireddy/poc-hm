@@ -57,7 +57,7 @@ node {
     }
     stage("proceed to QA server?"){
         timeout(activity: true, time: 11) {
-        input 'proceed to Promote?'
+        input 'proceed to  QA ?'
         }
     }
     stage("deployed to QA server"){
