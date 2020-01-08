@@ -28,4 +28,5 @@ phases:
       - printf '[{"name":"deploy","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json 
 artifacts:
-    files: imagedefinitions.json
+    files: 
+      - ./target/hello-1.0-RELEASES.war
